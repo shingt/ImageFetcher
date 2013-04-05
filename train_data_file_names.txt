@@ -1,0 +1,4 @@
+apple
+face
+lion
+cat
