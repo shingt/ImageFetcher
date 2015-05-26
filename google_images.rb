@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-#グーグル画像検索から画像をダウンロードする
-#使い方
-# ruby google_images.rb word1 word2 ...
-#  word1,word2は検索ワード
-#  wordを省略した場合、words.txtを読み込んで検索ワードとする
-#     words.txtはUTF-8の改行区切りで
-# $KCODE='UTF8'
 require 'cgi'
 require 'open-uri'
 require 'kconv'
@@ -17,12 +10,7 @@ NUM_IMAGES = 40
 GOOGLE_RESTRICT = 8
 AGENT = 'Mozilla/5.0 (X11; U; Linux i686; ja-JP; rv:1.7.5) Gecko/20041108 Firefox/1.0'
 
-#
-# save_image
-# ...urlの画像をnameとして保存
-#
 def save_image(url, name)
-  # wは新規作成書き込みモード bはバイナリモード
   open(name, 'wb') do |image|
     open(url) do |data|
       image.write(data.read)
@@ -63,22 +51,13 @@ words.each do |word|
       puts word
 
       if url
-        # 漢字コードを変換
         dir_name = word.tosjis
-        # ディレクトリがなければ生成
         Dir.mkdir(dir_name) unless File.exist?(dir_name)
 
-        # 画像URLを格納
-        #       dyn.first.scan(/http:\/\/(.*?)"/).each do |img_url|
-        # 順にURLをを配列に格納
-        #      urls << ('http://' + img_url.first)
-        #     end
-        #    if u = urls[1]
-        puts "the url is " + url
+        puts "URL: " + url
         folder = dir_name
         extension = '.jpg'
 
-        # ファイル名置き換え
         new_filename = folder + '/' + dir_name + index_sum.to_s + extension
         puts new_filename
         begin
@@ -87,8 +66,6 @@ words.each do |word|
         rescue OpenURI::HTTPError
         rescue Net::HTTPBadResponse
         rescue Errno::ECONNREFUSED
-        rescue Errno::ECONNRESET
-        rescue Errno::EBADF
         rescue Errno::ETIMEDOUT
         rescue Errno::EHOSTUNREACH
         rescue Timeout::Error
