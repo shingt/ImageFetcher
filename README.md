@@ -1,4 +1,4 @@
-# GoogleImageFetcher
+# ImageFetcher
 
 Just download images using google image search engine.
 
