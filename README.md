@@ -1,26 +1,22 @@
 # GoogleImageFetcher
 
-Download images using google image search engine.
+Just download images using google image search engine.
 
 ## Usage
 
-word1, word2, ... are words you want to search.  
-If argument is omitted words.txt in the same directory is imported.
 
 ```sh
+# If word argument is omitted, words.txt in the same directory is used instead.
 ruby google_images.rb word1 word2 ...
 ```
 
 ### update_image_names.rb
 
-Read foo.txt as an argument and create CategoryName.txt.  
-If you put
-
 ```sh
-ruby update_image_names.rb train_data_file_names.txt
+ruby update_image_names.rb file_names.txt
 ```
 
-and if that text file contains
+and if `file_names.txt` contains
 
 ```sh
 apples
@@ -36,8 +32,9 @@ faces/faces/txt
 animals/animals.txt
 ```
 
-will be created.  
-Each file has the names of images under each category. For instance, apples.txt will contain
+will be generated.
+Each file contains names of images for each category.
+For instance, `apples.txt` will contain
 
 ```sh
 apple/apple1.jpg
